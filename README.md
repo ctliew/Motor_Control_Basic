@@ -13,7 +13,10 @@ The switches usually function in pairs, such that it only allows current to flow
 ![L298N H-bridge](https://github.com/ctliew/Motor_Control_Basic/blob/master/images/L298N-Pinout.png)
 L298N is an integrated-circuit that consists of a dual-channel H-bridge, such that it can operates two independent motors at the same time and featuring some auxiliary capabilities such as 5-volt regulator.
 
+# Wiring
 
+# Arduino Program
+In this example, we are using Arduino to control one motor with forward and backward variable speed.
 ```c
 //Wiring Connections
 
@@ -41,7 +44,30 @@ void loop(){
     // Slowly ramp up the speed
     analogWrite(ENA, i);
     // Adding a bit of delay
-    delay(5);
+    delay(2);
   }
+  
+  delay(100);
+  // Stop the motor
+  analogWrite(ENA, 0);
+  
+  digitalWrite(DR1, LOW);
+  digitalWRite(DR2, HIGH);
+
+  for( int i = 0; i < 256 ; i++ ){
+    // Slowly ramp up the speed
+    analogWrite(ENA, i);
+    // Adding a bit of delay
+    delay(2);
+  }
+  
+  delay(100);
+  // Stop the motor
+  analogWrite(ENA, 0);
+  
+
 }
 ```
+
+# Small Execise
+Try to made a function that can take into the speed and direction as parameters and use the function to control the motor. Also try to control two motors at the same time, and use it to operate a small rover chassis.
