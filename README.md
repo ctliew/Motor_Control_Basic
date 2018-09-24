@@ -14,6 +14,9 @@ The switches usually function in pairs, such that it only allows current to flow
 L298N is an integrated-circuit that consists of a dual-channel H-bridge, such that it can operates two independent motors at the same time and featuring some auxiliary capabilities such as 5-volt regulator.
 
 # Wiring
+![Wiring Diagram](https://github.com/ctliew/Motor_Control_Basic/blob/master/images/L298N.png)
+Enable A is for PWM input
+IN1 and IN2 are for directional control 
 
 # Arduino Program
 In this example, we are using Arduino to control one motor with forward and backward variable speed.
