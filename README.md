@@ -1,5 +1,5 @@
 # Motor_Control_Basic
-In this tutorial, a simple dual-channel H-bridge motor driver is used. It allows control of the direction and variable speed of up to two motors.
+In this tutorial, a simple motor driver, dual-channel H-bridge is used. It allows control of bi-directional and variable speed of up to two motors. 
 
 # H-bridge
 In a nutshell, a H-bridge is a circuit that allow a DC output to be bi-directional and variable voltage at it output. As shown in the diagram below, it consists of four switches, usually FET (Field Effect Transistors), and the motor or any electronic that needs bi-directional variable voltages will sit in the middle and a DC voltage is supplied at the both ends.
@@ -7,27 +7,40 @@ In a nutshell, a H-bridge is a circuit that allow a DC output to be bi-direction
 
 ## Bi-directional Voltage Control
 ![Bi-directional H-bridge Diagram](https://github.com/ctliew/Motor_Control_Basic/blob/master/images/H_bridge_operating.svg_.png)
-The switches usually function in pairs, such that it only allows current to flow in one or the other direction. It is important not to turn on two switches at the same side at the same time as it will short circuit abd destroy the device and the power source.
+The switches usually function in pairs, such that it only allows current to flow in one or the other direction. It is important not to turn on two switches at the same side at the same time as it will short circuit and destroy the device and the power source. It is usually taken care off by the electronic design.
 
 # L298N Motor Driver
 ![L298N H-bridge](https://github.com/ctliew/Motor_Control_Basic/blob/master/images/L298N-Pinout.png)
 L298N is an integrated-circuit that consists of a dual-channel H-bridge, such that it can operates two independent motors at the same time and featuring some auxiliary capabilities such as 5-volt regulator.
 
-# Wiring
+# Wiring Diagram
 ![Wiring Diagram](https://github.com/ctliew/Motor_Control_Basic/blob/master/images/L298N.png)
-Enable A is for PWM input
-IN1 and IN2 are for directional control 
 
-# Arduino Program
+Enable A is for PWM/analog input of Motor connected to Terminal A
+IN1 and IN2 are for directional control of Motor connected to Terminal A
+Likewise, Enable B is for PWM/analog input of Motor connected to Terminal B
+IN3 and IN4 are for directional control of Motor connected to Terminal B
+
+Check your wiring before powering it up.
+
+Connect your power source, either from batteries or DC power supply to the L298N motor driver, the positive terminal goes to the left and the negative terminal goes to the middle of the three-pin terminal block respectively. There is an option to get a regulated 5-volt output from the L298N too if needed. For example, to power your Arduino board or Raspberry Pi which requires 5-volt power supply. 
+
+## Note
+It is requires to 'gound' your controller (Arduino or Raspberry Pi) to the motor driver, because of the electrical signals need a referencing potential.
+
+
+# Arduino Program - One Motor Control
 In this example, we are using Arduino to control one motor with forward and backward variable speed.
+* `pinMode(#PIN, OUTPUT)` set the corresponding pin to a output port
+* `digitalWrite( #PIN, HIGH)` set the pin to output logic HIGH or 5-volt in this case
+* In contrary, `digitalWrite( #PIN, LOW)` set the pin to output logic LOW or 0-volt
+* `analogWrite( #PIN, NUMBER)` set the pin to output an pseudo-analog output, the `NUMBER` can be 0~255 or any uint8 value 
+** only the pin with a `~` next to its pin number has the abilities to use `analogWrite`
 ```c
 //Wiring Connections
-
-#define ENA = 10; // Any pin that supports PWM output, for variable speed control
-#define DR1 = 9;  // Any digital output, for directional control
-#define DR2 = 8;  // Any digital output, for directional control
-
- 
+#define ENA 10  // Pin #10 or Any pin that supports PWM output, for variable speed control
+#define DR1 9   // Pin #10 or Any pin with digital output, for directional control
+#define DR2 8   // Pin #10 or Any pin with digital output, for directional control
  
 void setup(){
   // All motor control pins are outputs
@@ -36,12 +49,10 @@ void setup(){
   pinMode(DR2, OUTPUT);
 }
 
-
-
 void loop(){
   // Set the motor to run in one direction, this depends on your wiring
   digitalWrite(DR1, HIGH);
-  digitalWRite(DR2, LOW);
+  digitalWrite(DR2, LOW);
 
   for( int i = 0; i < 256 ; i++ ){
     // Slowly ramp up the speed
