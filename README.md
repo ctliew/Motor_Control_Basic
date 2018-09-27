@@ -21,7 +21,9 @@ IN1 and IN2 are for directional control of Motor connected to Terminal A
 Likewise, Enable B is for PWM/analog input of Motor connected to Terminal B
 IN3 and IN4 are for directional control of Motor connected to Terminal B
 
-Check your wiring before powering it up.
+**By default, the ENA and ENB have jumper attached so it always in enable mode**
+
+**Check your wiring before powering it up.**
 
 Connect your power source, either from batteries or DC power supply to the L298N motor driver, the positive terminal goes to the left and the negative terminal goes to the middle of the three-pin terminal block respectively. There is an option to get a regulated 5-volt output from the L298N too if needed. For example, to power your Arduino board or Raspberry Pi which requires 5-volt power supply. 
 
