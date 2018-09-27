@@ -35,7 +35,8 @@ In this example, we are using Arduino to control one motor with forward and back
 * `digitalWrite( #PIN, HIGH)` set the pin to output logic HIGH or 5-volt in this case
 * In contrary, `digitalWrite( #PIN, LOW)` set the pin to output logic LOW or 0-volt
 * `analogWrite( #PIN, NUMBER)` set the pin to output an pseudo-analog output, the `NUMBER` can be 0~255 or any uint8 value 
-** only the pin with a `~` next to its pin number has the abilities to use `analogWrite`
+..* only the pin with a `~` next to its pin number has the abilities to use `analogWrite`
+
 ```c
 //Wiring Connections
 #define ENA 10  // Pin #10 or Any pin that supports PWM output, for variable speed control
