@@ -1,5 +1,5 @@
-# Motor_Control_Basic
-In this tutorial, a simple motor driver, dual-channel H-bridge is used. It allows control of bi-directional and variable speed of up to two motors. 
+# Motor Control Basic
+In this tutorial, a simple motor driver, dual-channel H-bridge is used. It allows control of bi-directional and variable speed of up to two motors. Note that this covers a specific type of motor driver/controller for DC motor, there are various different drivers that use different mechanism and for different motor type.
 
 # H-bridge
 In a nutshell, a H-bridge is a circuit that allow a DC output to be bi-directional and variable voltage at it output. As shown in the diagram below, it consists of four switches, usually FET (Field Effect Transistors), and the motor or any electronic that needs bi-directional variable voltages will sit in the middle and a DC voltage is supplied at the both ends.
